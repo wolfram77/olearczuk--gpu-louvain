@@ -408,13 +408,12 @@ void printOriginalToCommunity(device_structures& deviceStructures, host_structur
 		int community = hostStructures.originalToCommunity[vector];
 		communityToVector[community].emplace_back(vector);
 	}
-	printf("%d\n", hostStructures.V);
-	for (int community = 0; community < hostStructures.V; community++) {
-		printf("%d", community + 1);
-		for (int i = 0; i < communityToVector[community].size(); i++)
-			printf(" %d", communityToVector[community][i] + 1);
-		printf("\n");
-	}
+	printf("communities: %d\n", hostStructures.V);
+	// for (int community = 0; community < hostStructures.V; community++) {
+	// 	printf("community %d: %d\n", community+1, communityToVector[community].size());
+	// 	// for (int i = 0; i < communityToVector[community].size(); i++)
+	// 	// 	printf(" %d", communityToVector[community][i] + 1);
+	// }
 }
 
 void initM(host_structures& hostStructures) {

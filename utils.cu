@@ -16,6 +16,7 @@ host_structures readInputData(char *fileName) {
 	} while (s[0] == '%');
 	std::istringstream stream(s);
     stream >> V >> V >> E;
+		printf("V: %d E: %d\n", V, E);
     int v1, v2;
     float w;
     host_structures hostStructures;
@@ -30,9 +31,12 @@ host_structures readInputData(char *fileName) {
     // TODO: here is assumption that graph is undirected
     int aux = E;
     for (int i = 0; i < aux; i++) {
-        file >> v1 >> v2 >> w;
+        file >> v1 >> v2;
+		w = 1;
         v1--;
         v2--;
+		assert(v1 >= 0 && v2 >= 0);
+		assert(v1 < V && v2 < V);
 		hostStructures.communityWeight[v1] += w;
         neighbours[v1].emplace_back(v2, w);
         if (v1 != v2) {
@@ -44,6 +48,7 @@ host_structures readInputData(char *fileName) {
 		hostStructures.M += w;
     }
     hostStructures.M /= 2;
+	printf("V: %d E: %d (after adding to hostStructures)\n", V, E);
     HANDLE_ERROR(cudaHostAlloc((void**)&hostStructures.edges, E * sizeof(int), cudaHostAllocDefault));
     HANDLE_ERROR(cudaHostAlloc((void**)&hostStructures.weights, E * sizeof(float), cudaHostAllocDefault));
 	hostStructures.E = E;

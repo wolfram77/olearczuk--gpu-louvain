@@ -1,7 +1,21 @@
+## VS Code
+## -------
+.vscode/
+.project
+.classpath
+
+## Generated files
+## ---------------
+bin/
+*.log
+*.csv
+*.o
+.idea
+
+## CMake
+## -----
 seqlouvain
 gpulouvain
-*.o
 tests
 CMakeLists.txt
 cmake-build-debug
-.idea

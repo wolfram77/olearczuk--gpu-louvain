@@ -153,7 +153,7 @@ NVCC          := $(CUDA_PATH)/bin/nvcc -ccbin $(HOST_COMPILER)
 # internal flags
 NVCCFLAGS   := -m${TARGET_SIZE}
 CCFLAGS     :=
-LDFLAGS     := -lglut -lGLU -lGL
+LDFLAGS     := # -lglut -lGLU -lGL
 
 # build flags
 ifeq ($(TARGET_OS),darwin)
@@ -210,7 +210,7 @@ LIBRARIES :=
 ################################################################################
 
 # Gencode arguments
-SMS ?= 30 35 37 50 52 60
+SMS ?= 70
 
 ifeq ($(SMS),)
 $(info >>> WARNING - no SM architectures have been specified - waiving sample <<<)
@@ -268,4 +268,3 @@ clean:
 	rm -f gpulouvain *.o
 
 clobber: clean
-
